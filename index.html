@@ -1,21 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3 Years</title>
-    <link rel="stylesheet" href="estilos/style.css">
-    <link rel="shortcut icon" href="midias/imagens/icons8-purple-heart-emoji-32.png" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3 Years</title>
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="estilos/style.css" />
+  
+  <!-- Ícone da aba -->
+  <link rel="shortcut icon" href="midias/imagens/icons8-purple-heart-emoji-32.png" type="image/x-icon">
 </head>
 <body>
-    <!--Botão-->
-    <section id="inicio" class="tela-inicial">
-        <button id="botaoamor">Quer ver o que eu fiz para você?</button>
-    </section>
 
-    <!--container onde os corações aparecerão-->
-    <div class="efeitocoracoes"></div>
+  <!-- Parte 1 - Tela inicial com botão -->
+  <section id="inicio" class="tela-inicial">
+    <button id="botaoamor">Quer ver o que eu fiz para você?</button>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- Efeito de corações flutuando -->
+  <div id="efeitocoracoes"></div>
+
+  <!-- Parte 2 - Amorômetro com barra de porcentagem -->
+  <section id="amor" class="tela-amorometro" style="display: none;">
+    <h2>O quanto você me ama?</h2>
+    <div class="barra-container">
+      <div id="barra" class="barra"></div>
+    </div>
+    <p id="porcentagem-texto">0%</p>
+    <button id="botaoamormetro">Clique para mostrar!</button>
+  </section>
+
+  <!-- Parte 2.5 - Quiz com perguntas e respostas -->
+  <section id="quiz" class="quiz" style="display: none;">
+    <div class="quiz-container">
+      <h2 id="pergunta">Pergunta aqui</h2>
+      <div id="respostas"></div>
+    </div>
+  </section>
+
+  <!-- Parte 3 - Tela final com mensagem, fotos e música -->
+  <section id="final" class="final" style="display: none;">
+    <div class="container">
+
+      <h2>Parabéns, minha gatinha! 💜</h2>
+      <p>Você completou o quiz!</p>
+
+      <!-- Música (player) -->
+      <div class="music-player">
+        <audio controls autoplay loop>
+          <source src="midias/audio/Tim Bernardes - BB (Garupa de Moto Amarela) (Audio Oficial + Lyrics).mp3" type="audio/mp3">
+          Seu navegador não suporta o elemento de áudio.
+        </audio>
+      </div>
+
+      <!-- Galeria de fotos em slideshow -->
+      <div class="fotos">
+        <img src="midias/imagens/foto1.jpg" class="slide ativo">
+        <img src="midias/imagens/foto2.jpg" class="slide">
+        <img src="midias/imagens/foto3.jpg" class="slide">
+        <img src="midias/imagens/foto4.jpg" class="slide">
+        <img src="midias/imagens/foto5.jpg" class="slide">
+        <img src="midias/imagens/foto6.webp" class="slide">
+        <img src="midias/imagens/foto7.jpg" class="slide">
+        <img src="midias/imagens/foto8.jpg" class="slide">
+        <img src="midias/imagens/foto9.jpg" class="slide">
+        <img src="midias/imagens/foto10.webp" class="slide">
+        <img src="midias/imagens/foto11.webp" class="slide">
+        <img src="midias/imagens/foto12.jpg" class="slide">
+        <img src="midias/imagens/foto13.jpg" class="slide">
+        <img src="midias/imagens/foto14.webp" class="slide">
+        <img src="midias/imagens/foto15.webp" class="slide">
+        <img src="midias/imagens/foto16.jpg" class="slide">
+      </div>
+
+      <!-- Contador de tempo juntos -->
+      <div id="contador">
+        <p id="eta">Eu te amo há: <span id="tempo"></span></p>
+      </div>
+
+      <!-- Texto especial com efeito de fade-in -->
+      <div class="texto">
+        <p class="fade">Oi meu amorzão, estou muito feliz de completar mais um ano ao seu lado. Você é tão importante para mim que me faltam até palavras para descrever o que eu sinto.</p>
+        <p class="fade">Sou extremamente feliz ao seu lado, espero que possamos passar a <span class="destaque">vida inteira</span> e a <span class="destaque">eternidade juntos</span>.</p>
+        <p class="fade">Fazia tempo que eu não te entregava um presente feito por mim. Me faltava tempo, mas prometo que a partir de hoje sempre vou reservar um espacinho pra isso.</p>
+        <p class="fade">Nesse momento em que escrevo, estou morrendo de saudades. Queria poder <span class="destaque">te ver todos os dias</span> pra sempre...</p>
+        <p class="fade">Amo seu <span class="destaque">cabelo lindo</span>, seus <span class="destaque">olhos grandes</span>, sentir seu <span class="destaque">cheiro maravilhoso</span>.</p>
+        <p class="fade">Logo mais estaremos na nossa casa, realizando nossos <span class="destaque">sonhos</span> e, claro... nos casando.</p>
+        <p class="fade">Espero que goste do site, mô. Ainda vou atualizar com mais <span class="destaque">fotos</span>. Vai ser o nosso cantinho kkkk</p>
+        <p class="fade"><span class="destaque">Eu te amo infinitamente</span>, my boo!</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
