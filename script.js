@@ -34,7 +34,10 @@ botaoamormetro.addEventListener("click", () => {
     porcentagemTexto.textContent = porcentagemamor + "%";
   }
 
+  // Subir corações roxos ao atingir 100%
   if (porcentagemamor >= 100) {
+    for (let i = 0; i < 30; i++) criarCoracao();
+
     setTimeout(() => {
       document.getElementById("amor").style.display = "none";
       document.getElementById("quiz").style.display = "block";
@@ -66,6 +69,26 @@ const perguntas = [
     correta: 1,
   },
   {
+    pergunta: "E a cor da minha?",
+    respostas: ["Vermelho", "Lilás", "Branco", "Preto"],
+    correta: 2,
+  },
+  {
+    pergunta: "O que eu mais amo em você?",
+    respostas: ["Olhos", "Coxas", "Inteligência", "Tudo isso e muito +"],
+    correta: 3,
+  },
+  {
+    pergunta: "Qual foi o primeiro filme que assistimos juntos?",
+    respostas: ["Homem Aranha", "Batman", "Sonic", "Uma noite de crime"],
+    correta: 0,
+  },
+  {
+    pergunta: "Quem disse 'Eu te amo' primeiro?",
+    respostas: ["Lucas", "L", "Nós dois", "Ninguém"],
+    correta: 1,
+  },
+  {
     pergunta: "Qual dessas músicas é a nossa cara?",
     respostas: ["BB", "Easy", "Entre Nós", "Todas as anteriores"],
     correta: 3,
@@ -93,6 +116,7 @@ function mostrarPergunta() {
 function verificarResposta(botao, index, correta) {
   if (index === correta) {
     botao.classList.add("correta");
+    for (let i = 0; i < 10; i++) criarCoracao(); // Adiciona corações roxos após resposta correta
     setTimeout(() => {
       perguntaAtual++;
       if (perguntaAtual < perguntas.length) {
@@ -160,4 +184,3 @@ function trocarFotos() {
   index = (index + 1) % fotos.length; // Vai para a próxima imagem (loop)
 }
 setInterval(trocarFotos, 3000); // Troca as fotos a cada 3 segundos
-
