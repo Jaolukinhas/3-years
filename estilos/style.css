@@ -195,39 +195,96 @@ button#botaoamor:hover {
     
   }
   
-  /* Galeria de fotos */
-  .fotos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .fotos img {
-    width: 100%;
-    max-width: 600px;  /* Ajuste o tamanho das imagens */
-    height: 500px;  /* A altura das imagens foi aumentada para 500px */
-    display: none;  /* Esconde todas as imagens inicialmente */
-    border-radius: 8px;
-    object-fit: cover;  /* Para manter a proporção das imagens */
-  }
+ /* Galeria de fotos com efeito de transição */
+.fotos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.fotos img {
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  display: none; /* Esconde todas as imagens inicialmente */
+  border-radius: 8px;
+  object-fit: cover;
+  transition: opacity 2s ease-in-out;
+}
+
+.fotos img.ativo {
+  display: block;
+  opacity: 1;
+}
+
+/* Efeito de Fade-in no texto ao rolar */
+.texto {
+  margin-top: 30px;
+  color: white;
+  font-size: 16px;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.texto.aparecer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.texto .destaque {
+  color: #c869ff;
+  font-weight: bold;
+  text-shadow: 0 0 4px #ff69b4;
+}
+
+/* Efeito de Transição de Imagens da Galeria */
+.fotos img {
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-out;
+}
+
+.fotos img.ativo {
+  display: block;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+
+p.par {
+  margin-bottom: 0px;
+}
   
   /* Contador */
   #contador {
-    width: 76%;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    width: 80%;
+    margin-top: 20px;
     background-color: white;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 10px;
     color: var(--cor-principal);
+    font-size: 18px;
+    text-align: center;
   }
   
   #tempo {
     font-weight: bold;
     font-size: 20px;
   }
+  
+  #diasTotais {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
   
   /* Texto com fade in */
   .texto {

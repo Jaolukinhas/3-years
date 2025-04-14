@@ -85,7 +85,7 @@ const perguntas = [
   },
   {
     pergunta: "Quem disse 'Eu te amo' primeiro?",
-    respostas: ["Lucas", "L", "Nós dois", "Ninguém"],
+    respostas: ["Lucas", "Lívia", "Nós dois", "Ninguém"],
     correta: 1,
   },
   {
@@ -159,28 +159,60 @@ function atualizarContador() {
     anos--;
     meses += 12;
   }
-  var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
   
+  // Calcular os dias do mês atual
+  var diasDoMes = dataHoje.getDate() - dataInicio.getDate();
+  if (diasDoMes < 0) {
+    diasDoMes += new Date(dataHoje.getFullYear(), dataHoje.getMonth(), 0).getDate();
+  }
+
+  var diasTotais = Math.floor(diff / (1000 * 60 * 60 * 24)); // Total de dias
+
   // Calculando horas, minutos e segundos
   var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   var segundos = Math.floor((diff % (1000 * 60)) / 1000);
-  
+
   // Atualizando o contador na página
-  document.getElementById("tempo").innerHTML = `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+  document.getElementById("tempo").innerHTML = `
+    Eu te amo há ${anos} anos, ${meses} meses, ${diasDoMes} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos
+  `;
+  document.getElementById("diasTotais").innerHTML = `Juntos há ${diasTotais} dias!`;
 }
 
 // Atualizando o contador de tempo real a cada 1 segundo
 setInterval(atualizarContador, 1000);
 
-// Efeito de fotos
-let index = 0;
-const fotos = document.querySelectorAll('.fotos img');
-function trocarFotos() {
-  fotos.forEach(foto => {
-    foto.style.display = 'none'; // Esconde todas as imagens
+
+// Alternando as fotos com transição
+let fotos = document.querySelectorAll('.fotos img');
+let indiceAtual = 0;
+
+function alternarFotos() {
+  fotos.forEach((foto, index) => {
+    foto.classList.remove('ativo');
+    if (index === indiceAtual) {
+      foto.classList.add('ativo');
+    }
   });
-  fotos[index].style.display = 'block'; // Mostra a foto atual
-  index = (index + 1) % fotos.length; // Vai para a próxima imagem (loop)
+  indiceAtual = (indiceAtual + 1) % fotos.length; // Loop infinito de fotos
 }
-setInterval(trocarFotos, 3000); // Troca as fotos a cada 3 segundos
+
+setInterval(alternarFotos, 3000); // Alterna as fotos a cada 3 segundos
+
+// Efeito de Fade-in no texto ao rolar para baixo
+const textos = document.querySelectorAll('.texto');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('aparecer');
+    } else {
+      entry.target.classList.remove('aparecer');
+    }
+  });
+}, { threshold: 0.5 }); // A animação será ativada quando 50% do texto estiver visível
+
+textos.forEach(texto => {
+  observer.observe(texto);
+});

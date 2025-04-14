@@ -43,20 +43,74 @@
   <section id="final" class="final" style="display: none;">
     <div class="container">
 
-      <h2>Parabéns, minha gatinha! 💜</h2>
-      <p>Você completou o quiz!</p>
+      <h2 class="para">Parabéns, minha gatinha! 💜</h2>
+      <p class="par">Você completou o quiz!</p>
 
-      <!-- Música (player) -->
-      <div class="music-player">
-        <audio controls autoplay loop>
-          <source src="midias/audio/Tim Bernardes - BB (Garupa de Moto Amarela) (Audio Oficial + Lyrics).mp3" type="audio/mp3">
+      <div style="text-align: center; margin: 30px auto; max-width: 600px;">
+        <audio id="audioPlayer">
+          <source src="midias/audio/bb.mp3" type="audio/mpeg">
           Seu navegador não suporta o elemento de áudio.
         </audio>
+      
+        <div style="margin-top: 10px;">
+          <button onclick="playPrevious()">⏮️</button>
+          <button onclick="togglePlayPause()" id="playPauseBtn">▶️</button>
+          <button onclick="playNext()">⏭️</button>
+        </div>
       </div>
+      
+      <script>
+        const playlist = [
+          "midias/audio/bb.mp3",
+          "midias/audio/entrenos.mp3",
+          "midias/audio/easy.mp3"
+        ];
+      
+        let currentTrack = 0;
+        const audioPlayer = document.getElementById("audioPlayer");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+      
+        function loadTrack(index) {
+          audioPlayer.src = playlist[index];
+          audioPlayer.play();
+          playPauseBtn.textContent = "⏸️";
+        }
+      
+        function playNext() {
+          currentTrack = (currentTrack + 1) % playlist.length;
+          loadTrack(currentTrack);
+        }
+      
+        function playPrevious() {
+          currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+          loadTrack(currentTrack);
+        }
+      
+        function togglePlayPause() {
+          if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseBtn.textContent = "⏸️";
+          } else {
+            audioPlayer.pause();
+            playPauseBtn.textContent = "▶️";
+          }
+        }
+      
+        // Avança automaticamente ao fim da música
+        audioPlayer.addEventListener("ended", playNext);
+      
+        // Carrega a primeira música ao abrir
+        window.addEventListener("load", () => {
+          loadTrack(currentTrack);
+        });
+      </script>
+      
+      
+      
 
       <!-- Galeria de fotos em slideshow -->
       <div class="fotos">
-        <img src="midias/imagens/foto1.jpg" class="slide ativo">
+        <img src="midias/imagens/foto1.jpg" class="slide ">
         <img src="midias/imagens/foto2.jpg" class="slide">
         <img src="midias/imagens/foto3.jpg" class="slide">
         <img src="midias/imagens/foto4.jpg" class="slide">
@@ -76,8 +130,10 @@
 
       <!-- Contador de tempo juntos -->
       <div id="contador">
-        <p id="eta">Eu te amo há: <span id="tempo"></span></p>
+        <div id="tempo"></div>
+        <div id="diasTotais"></div>
       </div>
+      
 
       <!-- Texto especial com efeito de fade-in -->
       <div class="texto">
